@@ -1,4 +1,4 @@
-package com.bank.accounts.domain.dto;
+package com.bank.accounts.domain.dto.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,8 +12,7 @@ import java.time.OffsetDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class PaymentResponseDto {
-    private Long paymentId;
+public class PaymentRequestDto {
     private OffsetDateTime datePayment;
     private String typePayment;
     private BigDecimal charge;

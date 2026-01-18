@@ -1,4 +1,4 @@
-package com.bank.accounts.domain.dto;
+package com.bank.accounts.domain.dto.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

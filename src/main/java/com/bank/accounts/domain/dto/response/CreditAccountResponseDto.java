@@ -1,4 +1,4 @@
-package com.bank.accounts.domain.dto;
+package com.bank.accounts.domain.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,7 +12,8 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class CreditAccountRequestDto {
+public class CreditAccountResponseDto {
+    private Long creditAccountId;
     private BigDecimal amount;
     private BigDecimal maxAccount;
     private LocalDate facturationDate;
