@@ -1,0 +1,1276 @@
+openapi: 3.0.1
+info:
+  title: BANK-API-V1
+  description: ''
+  version: 1.0.0
+tags: []
+paths:
+  /accounts/{accountId}:
+    get:
+      summary: Obtener Cuenta
+      deprecated: false
+      description: ''
+      operationId: obtainAccount
+      tags: []
+      parameters:
+        - name: accountId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountResponse'
+          headers: {}
+        '400':
+          $ref: '#/components/responses/BadRequest'
+          description: ''
+        '404':
+          $ref: '#/components/responses/NotFound'
+          description: ''
+        '500':
+          $ref: '#/components/responses/InternalError'
+          description: ''
+      security: []
+    put:
+      summary: Actualizar Cuenta
+      deprecated: false
+      description: ''
+      operationId: updateAccount
+      tags: []
+      parameters:
+        - name: accountId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountRequest'
+            examples: {}
+        required: true
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+          headers: {}
+        '202':
+          $ref: '#/components/responses/Tracking'
+          description: ''
+        '400':
+          $ref: '#/components/responses/BadRequest'
+          description: ''
+        '404':
+          $ref: '#/components/responses/NotFound'
+          description: ''
+        '500':
+          $ref: '#/components/responses/InternalError'
+          description: ''
+      security: []
+    delete:
+      summary: Borrar Cuenta
+      deprecated: false
+      description: ''
+      operationId: deleteAccount
+      tags: []
+      parameters:
+        - name: accountId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+          headers: {}
+        '202':
+          $ref: '#/components/responses/Tracking'
+          description: ''
+        '400':
+          $ref: '#/components/responses/BadRequest'
+          description: ''
+        '404':
+          $ref: '#/components/responses/NotFound'
+          description: ''
+        '500':
+          $ref: '#/components/responses/InternalError'
+          description: ''
+      security: []
+  /accounts:
+    post:
+      summary: Crear Cuenta
+      deprecated: false
+      description: ''
+      operationId: createAccount
+      tags: []
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountRequest'
+            examples: {}
+        required: true
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+          headers: {}
+        '202':
+          $ref: '#/components/responses/Tracking'
+          description: ''
+        '400':
+          $ref: '#/components/responses/BadRequest'
+          description: ''
+        '500':
+          $ref: '#/components/responses/InternalError'
+          description: ''
+      security: []
+  /accounts/{accountId}/cards:
+    post:
+      summary: Crear Cuenta Tarjeta
+      deprecated: false
+      description: ''
+      operationId: createAccountCard
+      tags: []
+      parameters:
+        - name: accountId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                debitCreditAccount:
+                  $ref: '#/components/schemas/DebitAccountRequest'
+                card:
+                  $ref: '#/components/schemas/CardRequest'
+              required:
+                - debitCreditAccount
+                - card
+            examples: {}
+        required: true
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+          headers: {}
+        '202':
+          $ref: '#/components/responses/Tracking'
+          description: ''
+        '400':
+          $ref: '#/components/responses/BadRequest'
+          description: ''
+        '404':
+          $ref: '#/components/responses/NotFound'
+          description: ''
+        '500':
+          $ref: '#/components/responses/InternalError'
+          description: ''
+      security: []
+  /accounts/{accountId}/cards/{cardId}:
+    delete:
+      summary: Borrar Cuenta Tarjeta
+      deprecated: false
+      description: ''
+      operationId: deleteAccountCard
+      tags: []
+      parameters:
+        - name: accountId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: cardId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+          headers: {}
+        '202':
+          $ref: '#/components/responses/Tracking'
+          description: ''
+        '400':
+          $ref: '#/components/responses/BadRequest'
+          description: ''
+        '404':
+          $ref: '#/components/responses/NotFound'
+          description: ''
+        '500':
+          $ref: '#/components/responses/InternalError'
+          description: ''
+      security: []
+    put:
+      summary: Actualizar Cuenta Tarjeta
+      deprecated: false
+      description: ''
+      operationId: editAccountCard
+      tags: []
+      parameters:
+        - name: accountId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: cardId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                debitCreditAccount:
+                  $ref: '#/components/schemas/DebitAccountRequest'
+                card:
+                  $ref: '#/components/schemas/CardRequest'
+              required:
+                - debitCreditAccount
+                - card
+            examples: {}
+        required: true
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+          headers: {}
+        '202':
+          $ref: '#/components/responses/Tracking'
+          description: ''
+        '400':
+          $ref: '#/components/responses/BadRequest'
+          description: ''
+        '404':
+          $ref: '#/components/responses/NotFound'
+          description: ''
+        '500':
+          $ref: '#/components/responses/InternalError'
+          description: ''
+      security: []
+  /payments/account/{accountId}:
+    get:
+      summary: Obtener pagos
+      deprecated: false
+      description: ''
+      operationId: obtainPaymentAccount
+      tags: []
+      parameters:
+        - name: accountId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: dateMin
+          in: query
+          description: ''
+          required: false
+          schema:
+            type: string
+            format: date
+        - name: dateMax
+          in: query
+          description: ''
+          required: false
+          schema:
+            type: string
+            format: date
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PaymentResponse'
+          headers: {}
+        '400':
+          $ref: '#/components/responses/BadRequest'
+          description: ''
+        '404':
+          $ref: '#/components/responses/NotFound'
+          description: ''
+        '500':
+          $ref: '#/components/responses/InternalError'
+          description: ''
+      security: []
+  /payments/{paymentId}:
+    put:
+      summary: Editar pago
+      deprecated: false
+      description: ''
+      operationId: editPayment
+      tags: []
+      parameters:
+        - name: paymentId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PaymentRequest'
+            examples: {}
+        required: true
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+          headers: {}
+        '202':
+          $ref: '#/components/responses/Tracking'
+          description: ''
+        '400':
+          $ref: '#/components/responses/BadRequest'
+          description: ''
+        '404':
+          $ref: '#/components/responses/NotFound'
+          description: ''
+        '500':
+          $ref: '#/components/responses/InternalError'
+          description: ''
+      security: []
+    delete:
+      summary: Borrar pago
+      deprecated: false
+      description: ''
+      operationId: deletePayment
+      tags: []
+      parameters:
+        - name: paymentId
+          in: path
+          description: ''
+          required: true
+          example: 0
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+          headers: {}
+        '202':
+          $ref: '#/components/responses/Tracking'
+          description: ''
+        '400':
+          $ref: '#/components/responses/BadRequest'
+          description: ''
+        '404':
+          $ref: '#/components/responses/NotFound'
+          description: ''
+        '500':
+          $ref: '#/components/responses/InternalError'
+          description: ''
+      security: []
+  /payments:
+    post:
+      summary: Crear pago
+      deprecated: false
+      description: ''
+      operationId: createPayment
+      tags: []
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PaymentRequest'
+            examples: {}
+        required: true
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+          headers: {}
+        '202':
+          $ref: '#/components/responses/Tracking'
+          description: ''
+        '400':
+          $ref: '#/components/responses/BadRequest'
+          description: ''
+        '404':
+          $ref: '#/components/responses/NotFound'
+          description: ''
+        '500':
+          $ref: '#/components/responses/InternalError'
+          description: ''
+      security: []
+  /transactions/account/{accountId}:
+    get:
+      summary: Obtener transaccion
+      deprecated: false
+      description: ''
+      operationId: obtainTransactionAccount
+      tags: []
+      parameters:
+        - name: accountId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: dateMin
+          in: query
+          description: ''
+          required: false
+          schema:
+            type: string
+            format: date
+            nullable: true
+        - name: dateMax
+          in: query
+          description: ''
+          required: false
+          schema:
+            type: string
+            format: date
+            nullable: true
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TransactionResponse'
+          headers: {}
+        '400':
+          $ref: '#/components/responses/BadRequest'
+          description: ''
+        '404':
+          $ref: '#/components/responses/NotFound'
+          description: ''
+        '500':
+          $ref: '#/components/responses/InternalError'
+          description: ''
+      security: []
+  /transactions/{transactionId}:
+    put:
+      summary: Borrar transaccion
+      deprecated: false
+      description: ''
+      operationId: updateTransaction
+      tags: []
+      parameters:
+        - name: transactionId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TransactionRequest'
+            examples: {}
+        required: true
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+          headers: {}
+        '202':
+          $ref: '#/components/responses/Tracking'
+          description: ''
+        '400':
+          $ref: '#/components/responses/BadRequest'
+          description: ''
+        '404':
+          $ref: '#/components/responses/NotFound'
+          description: ''
+        '500':
+          $ref: '#/components/responses/InternalError'
+          description: ''
+      security: []
+    delete:
+      summary: Borrar transaccion
+      deprecated: false
+      description: ''
+      operationId: deleteTransaction
+      tags: []
+      parameters:
+        - name: transactionId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+          headers: {}
+        '202':
+          $ref: '#/components/responses/Tracking'
+          description: ''
+        '400':
+          $ref: '#/components/responses/BadRequest'
+          description: ''
+        '404':
+          $ref: '#/components/responses/NotFound'
+          description: ''
+        '500':
+          $ref: '#/components/responses/InternalError'
+          description: ''
+      security: []
+  /transactions:
+    post:
+      summary: Crear transaccion
+      deprecated: false
+      description: ''
+      operationId: createTransaction
+      tags: []
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TransactionRequest'
+            examples: {}
+        required: true
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+          headers: {}
+        '202':
+          $ref: '#/components/responses/Tracking'
+          description: ''
+        '400':
+          $ref: '#/components/responses/BadRequest'
+          description: ''
+        '404':
+          $ref: '#/components/responses/NotFound'
+          description: ''
+        '500':
+          $ref: '#/components/responses/InternalError'
+          description: ''
+      security: []
+  /service-points/owners/{accountId}:
+    post:
+      summary: Crear puntos de servicio
+      deprecated: false
+      description: ''
+      operationId: createServicePoint
+      tags: []
+      parameters:
+        - name: accountId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServicePointRequest'
+            examples: {}
+        required: true
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+          headers: {}
+        '202':
+          $ref: '#/components/responses/Tracking'
+          description: ''
+        '400':
+          $ref: '#/components/responses/BadRequest'
+          description: ''
+        '404':
+          $ref: '#/components/responses/NotFound'
+          description: ''
+        '500':
+          $ref: '#/components/responses/InternalError'
+          description: ''
+      security: []
+  /service-points/{servicePointId}/owners/{accountId}:
+    put:
+      summary: Actualizar puntos de servicio
+      deprecated: false
+      description: ''
+      operationId: editServicePoint
+      tags: []
+      parameters:
+        - name: servicePointId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: accountId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServicePointRequest'
+            examples: {}
+        required: true
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+          headers: {}
+        '202':
+          $ref: '#/components/responses/Tracking'
+          description: ''
+        '400':
+          $ref: '#/components/responses/BadRequest'
+          description: ''
+        '404':
+          $ref: '#/components/responses/NotFound'
+          description: ''
+        '500':
+          $ref: '#/components/responses/InternalError'
+          description: ''
+      security: []
+    delete:
+      summary: Borrar puntos de servicio
+      deprecated: false
+      description: ''
+      operationId: deleteServicePoint
+      tags: []
+      parameters:
+        - name: servicePointId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: accountId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+          headers: {}
+        '202':
+          $ref: '#/components/responses/Tracking'
+          description: ''
+        '400':
+          $ref: '#/components/responses/BadRequest'
+          description: ''
+        '404':
+          $ref: '#/components/responses/NotFound'
+          description: ''
+        '500':
+          $ref: '#/components/responses/InternalError'
+          description: ''
+      security: []
+    get:
+      summary: Obtener puntos de servicio de un propietario
+      deprecated: false
+      description: ''
+      operationId: obtainServicePointOwner
+      tags: []
+      parameters:
+        - name: servicePointId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: accountId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ServicePointResponse'
+          headers: {}
+        '400':
+          $ref: '#/components/responses/BadRequest'
+          description: ''
+        '404':
+          $ref: '#/components/responses/NotFound'
+          description: ''
+        '500':
+          $ref: '#/components/responses/InternalError'
+          description: ''
+      security: []
+  /service-points/{servicePointId}:
+    get:
+      summary: Obtener puntos de servicio
+      deprecated: false
+      description: ''
+      operationId: obtainServicePoint
+      tags: []
+      parameters:
+        - name: servicePointId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  servicePointId:
+                    type: integer
+                    format: int64
+                  name:
+                    type: string
+                  accountOwner:
+                    $ref: '#/components/schemas/AccountResponse'
+                required:
+                  - servicePointId
+                  - name
+                  - accountOwner
+          headers: {}
+        '400':
+          $ref: '#/components/responses/BadRequest'
+          description: ''
+        '404':
+          $ref: '#/components/responses/NotFound'
+          description: ''
+        '500':
+          $ref: '#/components/responses/InternalError'
+          description: ''
+      security: []
+components:
+  schemas:
+    CardRequest:
+      type: object
+      properties:
+        numberCard:
+          type: string
+          pattern: ^\d{13,19}$
+        cvc:
+          type: string
+          pattern: ^\d{3,4}$
+        date:
+          type: string
+          pattern: ^(0[1-9]|1[0-2])\/\d{2}$
+        cardType:
+          type: string
+          pattern: ^(CREDIT|DEBIT)$
+      required:
+        - numberCard
+        - cvc
+        - date
+        - cardType
+    CardResponse:
+      type: object
+      properties:
+        cardId:
+          type: integer
+          format: int64
+        numberCard:
+          type: string
+          pattern: ^\d{13,19}$
+        cvc:
+          type: string
+          pattern: ^\d{3,4}$
+        date:
+          type: string
+          pattern: ^(0[1-9]|1[0-2])\/\d{2}$
+        accountId:
+          type: integer
+          format: int64
+        cardType:
+          type: string
+          pattern: ^(CREDIT|DEBIT)$
+        creditDebitAccount:
+          anyOf:
+            - $ref: '#/components/schemas/DebitAccountResponse'
+            - $ref: '#/components/schemas/CreditAccountResponse'
+      required:
+        - numberCard
+        - cvc
+        - date
+        - accountId
+        - cardType
+        - cardId
+        - creditDebitAccount
+    DebitAccountResponse:
+      type: object
+      properties:
+        debitAccountId:
+          type: integer
+          format: int64
+        cardId:
+          type: string
+        amount:
+          type: number
+        currency:
+          type: string
+          pattern: ^(PEN|USD)$
+        debitAccountType:
+          type: string
+          pattern: ^(AHORROS|CORRIENTE)$
+      required:
+        - amount
+        - currency
+        - debitAccountType
+        - cardId
+        - debitAccountId
+    CreditAccountResponse:
+      type: object
+      properties:
+        creditAccountId:
+          type: integer
+          format: int64
+        amount:
+          type: number
+        maxAccount:
+          type: number
+        facturationDate:
+          type: string
+          format: date
+        lastPaymentDate:
+          type: string
+          format: date
+        currency:
+          type: string
+          pattern: ^(PEN|USD)$
+      required:
+        - amount
+        - maxAccount
+        - facturationDate
+        - lastPaymentDate
+        - currency
+        - creditAccountId
+    DebitAccountRequest:
+      type: object
+      properties:
+        amount:
+          type: number
+        currency:
+          type: string
+          pattern: ^(PEN|USD)$
+        debitAccountType:
+          type: string
+          pattern: ^(AHORROS|CORRIENTE)$
+      required:
+        - amount
+        - currency
+        - debitAccountType
+    CreditAccountRequest:
+      type: object
+      properties:
+        amount:
+          type: number
+        maxAccount:
+          type: number
+        facturationDate:
+          type: string
+          format: date
+        lastPaymentDate:
+          type: string
+          format: date
+        currency:
+          type: string
+          pattern: ^(PEN|USD)$
+      required:
+        - amount
+        - maxAccount
+        - facturationDate
+        - lastPaymentDate
+        - currency
+    AccountRequest:
+      type: object
+      properties:
+        documentType:
+          type: string
+          pattern: ^(DNI|CE|PS|RUC)$
+        documentNumber:
+          type: string
+        phone:
+          type: string
+          pattern: ^9\d{8}$
+        email:
+          type: string
+          format: email
+        names:
+          type: string
+        lastNames:
+          type: string
+        dateOfBirth:
+          type: string
+          format: date
+      required:
+        - documentType
+        - documentNumber
+        - phone
+        - email
+        - names
+        - lastNames
+        - dateOfBirth
+    AccountResponse:
+      type: object
+      properties:
+        accountId:
+          type: integer
+          format: int64
+        documentType:
+          type: string
+          pattern: ^(DNI|CE|PS|RUC)$
+        documentNumber:
+          type: string
+        phone:
+          type: string
+          pattern: ^9\d{8}$
+        email:
+          type: string
+          format: email
+        names:
+          type: string
+        lastNames:
+          type: string
+        dateOfBirth:
+          type: string
+          format: date
+        cards:
+          type: array
+          items:
+            $ref: '#/components/schemas/CardResponse'
+      required:
+        - documentType
+        - documentNumber
+        - phone
+        - email
+        - names
+        - lastNames
+        - dateOfBirth
+        - accountId
+        - cards
+    PaymentResponse:
+      type: object
+      properties:
+        paymentId:
+          type: integer
+          format: int64
+        datePayment:
+          type: string
+          format: date-time
+        typePayment:
+          type: string
+          pattern: ^(PRODUCT|SERVICE)$
+        charge:
+          type: number
+        cardId:
+          type: integer
+          format: int64
+        fee:
+          type: number
+        servicePointId:
+          type: integer
+          format: int64
+        currency:
+          type: string
+          pattern: ^(PEN|USD)$
+      required:
+        - datePayment
+        - typePayment
+        - charge
+        - cardId
+        - fee
+        - servicePointId
+        - paymentId
+        - currency
+    PaymentRequest:
+      type: object
+      properties:
+        datePayment:
+          type: string
+          format: date-time
+        typePayment:
+          type: string
+          pattern: ^(PRODUCT|SERVICE)$
+        charge:
+          type: number
+        cardId:
+          type: integer
+          format: int64
+        fee:
+          type: number
+        servicePointId:
+          type: integer
+          format: int64
+        currency:
+          type: string
+          pattern: ^(PEN|USD)$
+      required:
+        - datePayment
+        - typePayment
+        - charge
+        - cardId
+        - fee
+        - servicePointId
+        - currency
+    TransactionRequest:
+      type: object
+      properties:
+        dateTransaction:
+          type: string
+          format: date-time
+        typeTransaction:
+          type: string
+          pattern: ^(DIRECTA|DIFERIDA)$
+        amount:
+          type: string
+        debitAccountSourceId:
+          type: integer
+          format: int64
+        debitAccountDestinyId:
+          type: integer
+          format: int64
+        currency:
+          type: string
+          pattern: ^(PEN|USD)$
+      required:
+        - dateTransaction
+        - typeTransaction
+        - amount
+        - debitAccountSourceId
+        - debitAccountDestinyId
+        - currency
+    TransactionResponse:
+      type: object
+      properties:
+        transactionId:
+          type: integer
+          format: int64
+        dateTransaction:
+          type: string
+          format: date-time
+        typeTransaction:
+          type: string
+          pattern: ^(DIRECTA|DIFERIDA)$
+        amount:
+          type: string
+        debitAccountSourceId:
+          type: integer
+          format: int64
+        debitAccountDestinyId:
+          type: integer
+          format: int64
+        currency:
+          type: string
+          pattern: ^(PEN|USD)$
+      required:
+        - dateTransaction
+        - typeTransaction
+        - amount
+        - debitAccountSourceId
+        - debitAccountDestinyId
+        - currency
+        - transactionId
+    ServicePointRequest:
+      type: object
+      properties:
+        name:
+          type: string
+      required:
+        - name
+    ServicePointResponse:
+      type: object
+      properties:
+        servicePointId:
+          type: integer
+          format: int64
+        name:
+          type: string
+        accountOwner:
+          $ref: '#/components/schemas/AccountResponse'
+      required:
+        - name
+        - accountOwner
+        - servicePointId
+    TrackingResponse:
+      type: object
+      properties:
+        operationDate:
+          type: string
+          format: date-time
+        trackingId:
+          type: string
+          format: uuid
+      required:
+        - operationDate
+        - trackingId
+    BadRequestResponse:
+      type: object
+      properties:
+        description:
+          type: string
+        errors:
+          type: array
+          items:
+            type: string
+      required:
+        - description
+        - errors
+    InternalErrorResponse: &ref_0
+      type: object
+      properties:
+        description:
+          type: string
+      required:
+        - description
+    NotFoundResponse: *ref_0
+  responses:
+    Tracking:
+      description: ''
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/TrackingResponse'
+    NotFound:
+      description: ''
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NotFoundResponse'
+    BadRequest:
+      description: ''
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/BadRequestResponse'
+    InternalError:
+      description: ''
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/InternalErrorResponse'
+  securitySchemes: {}
+servers: []
+security: []

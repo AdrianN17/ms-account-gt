@@ -1,0 +1,189 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: assistant
+      changes:
+        - createTable:
+            tableName: account
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: document_type
+                  type: INT
+                  defaultValueNumeric: 1
+                  constraints:
+                    nullable: false
+              - column:
+                  name: document_number
+                  type: VARCHAR(255)
+              - column:
+                  name: phone
+                  type: VARCHAR(9)
+              - column:
+                  name: email
+                  type: VARCHAR(255)
+              - column:
+                  name: names
+                  type: VARCHAR(255)
+              - column:
+                  name: last_names
+                  type: VARCHAR(255)
+              - column:
+                  name: date_of_birth
+                  type: DATE
+              - column:
+                  name: enabled
+                  type: BOOLEAN
+                  defaultValueBoolean: true
+
+  - changeSet:
+      id: 2
+      author: assistant
+      changes:
+        - createTable:
+            tableName: card
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: number_card
+                  type: VARCHAR(255)
+              - column:
+                  name: cvc
+                  type: VARCHAR(4)
+              - column:
+                  name: date
+                  type: DATE
+              - column:
+                  name: account_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: card_type
+                  type: VARCHAR(255)
+              - column:
+                  name: enabled
+                  type: BOOLEAN
+                  defaultValueBoolean: true
+
+  - changeSet:
+      id: 3
+      author: assistant
+      changes:
+        - createTable:
+            tableName: credit_account
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: card_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: amount
+                  type: DECIMAL(19,2)
+                  defaultValueNumeric: 0.00
+              - column:
+                  name: max_amount
+                  type: DECIMAL(19,2)
+              - column:
+                  name: facturation_date
+                  type: DATE
+              - column:
+                  name: last_payment_date
+                  type: DATE
+              - column:
+                  name: currency
+                  type: INT
+              - column:
+                  name: enabled
+                  type: BOOLEAN
+                  defaultValueBoolean: true
+
+  - changeSet:
+      id: 4
+      author: assistant
+      changes:
+        - createTable:
+            tableName: debit_account
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: card_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: amount
+                  type: DECIMAL(19,2)
+                  defaultValueNumeric: 0.00
+              - column:
+                  name: debit_account_type
+                  type: INT
+              - column:
+                  name: currency
+                  type: INT
+              - column:
+                  name: enabled
+                  type: BOOLEAN
+                  defaultValueBoolean: true
+
+  - changeSet:
+      id: 5
+      author: assistant
+      changes:
+        - addForeignKeyConstraint:
+            baseTableName: card
+            baseColumnNames: account_id
+            referencedTableName: account
+            referencedColumnNames: id
+            constraintName: fk_card_account
+            onDelete: CASCADE
+
+  - changeSet:
+      id: 6
+      author: assistant
+      changes:
+        - addForeignKeyConstraint:
+            baseTableName: credit_account
+            baseColumnNames: card_id
+            referencedTableName: card
+            referencedColumnNames: id
+            constraintName: fk_credit_account_card
+            onDelete: CASCADE
+
+  - changeSet:
+      id: 7
+      author: assistant
+      changes:
+        - addForeignKeyConstraint:
+            baseTableName: debit_account
+            baseColumnNames: card_id
+            referencedTableName: card
+            referencedColumnNames: id
+            constraintName: fk_debit_account_card
+            onDelete: CASCADE

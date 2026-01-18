@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: account bank
+  jpa:
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+  datasource:
+    url: jdbc:sqlserver://192.168.18.11:1433;databaseName=BANK;encrypt=false;trustServerCertificate=false
+    username: sa
+    password: Password123!
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+  liquibase:
+    enabled: true
+    change-log: classpath:/db/changelog/master-bd.yaml
