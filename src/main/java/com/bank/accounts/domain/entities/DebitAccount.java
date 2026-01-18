@@ -1,8 +1,12 @@
 package com.bank.accounts.domain.entities;
 
+import com.bank.accounts.domain.converter.CurrencyConverter;
+import com.bank.accounts.domain.converter.DebitAccountTypeConverter;
+import com.bank.accounts.domain.entities.enums.Currency;
+import com.bank.accounts.domain.entities.enums.DebitAccountType;
+import jakarta.persistence.*;
 import lombok.*;
 
-import jakarta.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
@@ -27,10 +31,12 @@ public class DebitAccount extends EnabledEntity {
     @Column(name = "amount", precision = 19, scale = 2)
     private BigDecimal amount = BigDecimal.ZERO;
 
+    @Convert(converter = DebitAccountTypeConverter.class)
     @Column(name = "debit_account_type")
-    private Integer debitAccountType;
+    private DebitAccountType debitAccountType;
 
+    @Convert(converter = CurrencyConverter.class)
     @Column(name = "currency")
-    private Integer currency;
+    private Currency currency;
 
 }

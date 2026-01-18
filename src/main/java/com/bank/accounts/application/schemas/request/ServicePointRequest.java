@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.annotation.Generated;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotBlank;
 
 import java.util.Objects;
 
@@ -38,6 +39,7 @@ public class ServicePointRequest {
      * @return name
      */
     @NotNull
+    @NotBlank
     @Schema(name = "name", requiredMode = Schema.RequiredMode.REQUIRED)
     @JsonProperty("name")
     public String getName() {
@@ -85,4 +87,3 @@ public class ServicePointRequest {
         return o.toString().replace("\n", "\n    ");
     }
 }
-

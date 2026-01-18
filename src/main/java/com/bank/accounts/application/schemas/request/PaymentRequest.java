@@ -6,6 +6,7 @@ import jakarta.annotation.Generated;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.math.BigDecimal;
@@ -84,6 +85,7 @@ public class PaymentRequest {
      * @return typePayment
      */
     @NotNull
+    @NotBlank
     @Pattern(regexp = "^(PRODUCT|SERVICE)$")
     @Schema(name = "typePayment", requiredMode = Schema.RequiredMode.REQUIRED)
     @JsonProperty("typePayment")
@@ -192,6 +194,7 @@ public class PaymentRequest {
      * @return currency
      */
     @NotNull
+    @NotBlank
     @Pattern(regexp = "^(PEN|USD)$")
     @Schema(name = "currency", requiredMode = Schema.RequiredMode.REQUIRED)
     @JsonProperty("currency")
@@ -252,4 +255,3 @@ public class PaymentRequest {
         return o.toString().replace("\n", "\n    ");
     }
 }
-

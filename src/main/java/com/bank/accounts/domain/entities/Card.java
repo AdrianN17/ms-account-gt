@@ -5,6 +5,9 @@ import lombok.*;
 import jakarta.persistence.*;
 import java.time.LocalDate;
 
+import com.bank.accounts.domain.entities.enums.CardType;
+import com.bank.accounts.domain.converter.CardTypeConverter;
+
 @Entity
 @Table(name = "card")
 @Getter
@@ -33,8 +36,9 @@ public class Card extends EnabledEntity {
     @JoinColumn(name = "account_id", nullable = false)
     private Account account;
 
+    @Convert(converter = CardTypeConverter.class)
     @Column(name = "card_type")
-    private String cardType;
+    private CardType cardType;
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "id", referencedColumnName = "card_id", insertable = false, updatable = false)

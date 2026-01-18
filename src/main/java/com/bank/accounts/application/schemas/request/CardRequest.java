@@ -5,6 +5,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.annotation.Generated;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.NotBlank;
 
 import java.util.Objects;
 
@@ -48,6 +49,7 @@ public class CardRequest {
      * @return numberCard
      */
     @NotNull
+    @NotBlank
     @Pattern(regexp = "^\\d{13,19}$")
     @Schema(name = "numberCard", requiredMode = Schema.RequiredMode.REQUIRED)
     @JsonProperty("numberCard")
@@ -70,6 +72,7 @@ public class CardRequest {
      * @return cvc
      */
     @NotNull
+    @NotBlank
     @Pattern(regexp = "^\\d{3,4}$")
     @Schema(name = "cvc", requiredMode = Schema.RequiredMode.REQUIRED)
     @JsonProperty("cvc")
@@ -92,6 +95,7 @@ public class CardRequest {
      * @return date
      */
     @NotNull
+    @NotBlank
     @Pattern(regexp = "^(0[1-9]|1[0-2])/\\d{2}$")
     @Schema(name = "date", requiredMode = Schema.RequiredMode.REQUIRED)
     @JsonProperty("date")
@@ -114,6 +118,7 @@ public class CardRequest {
      * @return cardType
      */
     @NotNull
+    @NotBlank
     @Pattern(regexp = "^(CREDIT|DEBIT)$")
     @Schema(name = "cardType", requiredMode = Schema.RequiredMode.REQUIRED)
     @JsonProperty("cardType")
@@ -168,4 +173,3 @@ public class CardRequest {
         return o.toString().replace("\n", "\n    ");
     }
 }
-

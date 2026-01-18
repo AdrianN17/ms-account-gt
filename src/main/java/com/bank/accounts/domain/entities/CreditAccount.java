@@ -6,6 +6,9 @@ import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+import com.bank.accounts.domain.entities.enums.Currency;
+import com.bank.accounts.domain.converter.CurrencyConverter;
+
 @Entity
 @Table(name = "credit_account")
 @Getter
@@ -40,7 +43,8 @@ public class CreditAccount extends EnabledEntity {
     @Column(name = "last_payment_date")
     private LocalDate lastPaymentDate;
 
+    @Convert(converter = CurrencyConverter.class)
     @Column(name = "currency")
-    private Integer currency;
+    private Currency currency;
 
 }

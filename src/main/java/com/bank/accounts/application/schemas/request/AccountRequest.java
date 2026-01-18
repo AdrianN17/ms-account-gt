@@ -7,6 +7,7 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
@@ -62,6 +63,7 @@ public class AccountRequest {
      * @return documentType
      */
     @NotNull
+    @NotBlank
     @Pattern(regexp = "^(DNI|CE|PS|RUC)$")
     @Schema(name = "documentType", requiredMode = Schema.RequiredMode.REQUIRED)
     @JsonProperty("documentType")
@@ -84,6 +86,7 @@ public class AccountRequest {
      * @return documentNumber
      */
     @NotNull
+    @NotBlank
     @Schema(name = "documentNumber", requiredMode = Schema.RequiredMode.REQUIRED)
     @JsonProperty("documentNumber")
     public String getDocumentNumber() {
@@ -105,6 +108,7 @@ public class AccountRequest {
      * @return phone
      */
     @NotNull
+    @NotBlank
     @Pattern(regexp = "^9\\d{8}$")
     @Schema(name = "phone", requiredMode = Schema.RequiredMode.REQUIRED)
     @JsonProperty("phone")
@@ -127,6 +131,7 @@ public class AccountRequest {
      * @return email
      */
     @NotNull
+    @NotBlank
     @Email
     @Schema(name = "email", requiredMode = Schema.RequiredMode.REQUIRED)
     @JsonProperty("email")
@@ -149,6 +154,7 @@ public class AccountRequest {
      * @return names
      */
     @NotNull
+    @NotBlank
     @Schema(name = "names", requiredMode = Schema.RequiredMode.REQUIRED)
     @JsonProperty("names")
     public String getNames() {
@@ -170,6 +176,7 @@ public class AccountRequest {
      * @return lastNames
      */
     @NotNull
+    @NotBlank
     @Schema(name = "lastNames", requiredMode = Schema.RequiredMode.REQUIRED)
     @JsonProperty("lastNames")
     public String getLastNames() {
@@ -251,4 +258,3 @@ public class AccountRequest {
         return o.toString().replace("\n", "\n    ");
     }
 }
-

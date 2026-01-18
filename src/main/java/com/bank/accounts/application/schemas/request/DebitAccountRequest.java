@@ -6,6 +6,7 @@ import jakarta.annotation.Generated;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.NotBlank;
 
 import java.math.BigDecimal;
 import java.util.Objects;
@@ -69,6 +70,7 @@ public class DebitAccountRequest {
      * @return currency
      */
     @NotNull
+    @NotBlank
     @Pattern(regexp = "^(PEN|USD)$")
     @Schema(name = "currency", requiredMode = Schema.RequiredMode.REQUIRED)
     @JsonProperty("currency")
@@ -91,6 +93,7 @@ public class DebitAccountRequest {
      * @return debitAccountType
      */
     @NotNull
+    @NotBlank
     @Pattern(regexp = "^(AHORROS|CORRIENTE)$")
     @Schema(name = "debitAccountType", requiredMode = Schema.RequiredMode.REQUIRED)
     @JsonProperty("debitAccountType")
@@ -143,4 +146,3 @@ public class DebitAccountRequest {
         return o.toString().replace("\n", "\n    ");
     }
 }
-

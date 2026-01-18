@@ -6,6 +6,7 @@ import jakarta.annotation.Generated;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.OffsetDateTime;
@@ -80,6 +81,7 @@ public class TransactionRequest {
      * @return typeTransaction
      */
     @NotNull
+    @NotBlank
     @Pattern(regexp = "^(DIRECTA|DIFERIDA)$")
     @Schema(name = "typeTransaction", requiredMode = Schema.RequiredMode.REQUIRED)
     @JsonProperty("typeTransaction")
@@ -102,6 +104,7 @@ public class TransactionRequest {
      * @return amount
      */
     @NotNull
+    @NotBlank
     @Schema(name = "amount", requiredMode = Schema.RequiredMode.REQUIRED)
     @JsonProperty("amount")
     public String getAmount() {
@@ -165,6 +168,7 @@ public class TransactionRequest {
      * @return currency
      */
     @NotNull
+    @NotBlank
     @Pattern(regexp = "^(PEN|USD)$")
     @Schema(name = "currency", requiredMode = Schema.RequiredMode.REQUIRED)
     @JsonProperty("currency")
@@ -223,4 +227,3 @@ public class TransactionRequest {
         return o.toString().replace("\n", "\n    ");
     }
 }
-

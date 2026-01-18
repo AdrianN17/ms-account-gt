@@ -7,6 +7,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.bank.accounts.domain.entities.enums.DocumentType;
+import com.bank.accounts.domain.converter.DocumentTypeConverter;
+
 @Entity
 @Table(name = "account")
 @Getter
@@ -22,8 +25,9 @@ public class Account extends EnabledEntity {
     @EqualsAndHashCode.Include
     private Long id;
 
+    @Convert(converter = DocumentTypeConverter.class)
     @Column(name = "document_type", nullable = false)
-    private Integer documentType;
+    private DocumentType documentType;
 
     @Column(name = "document_number")
     private String documentNumber;
