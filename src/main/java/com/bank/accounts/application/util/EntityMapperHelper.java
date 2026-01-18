@@ -4,7 +4,9 @@ import com.bank.accounts.domain.entities.enums.CardType;
 import com.bank.accounts.domain.entities.enums.Currency;
 import com.bank.accounts.domain.entities.enums.DebitAccountType;
 import com.bank.accounts.domain.entities.enums.DocumentType;
+import org.mapstruct.Named;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public class EntityMapperHelper {
@@ -58,5 +60,35 @@ public class EntityMapperHelper {
     public String localDateToString(LocalDate d) {
         return d == null ? null : d.toString();
     }
-}
 
+    // Generic conversions used by mappers
+    @Named("stringToInteger")
+    public Integer stringToInteger(String s) {
+        if (s == null) return null;
+        try {
+            return Integer.valueOf(s);
+        } catch (NumberFormatException e) {
+            return null;
+        }
+    }
+
+    @Named("integerToString")
+    public String integerToString(Integer i) {
+        return i == null ? null : String.valueOf(i);
+    }
+
+    @Named("stringToBigDecimal")
+    public BigDecimal stringToBigDecimal(String s) {
+        if (s == null) return null;
+        try {
+            return new BigDecimal(s);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    @Named("bigDecimalToString")
+    public String bigDecimalToString(BigDecimal b) {
+        return b == null ? null : b.toPlainString();
+    }
+}

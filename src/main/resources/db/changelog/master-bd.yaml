@@ -72,7 +72,7 @@ databaseChangeLog:
                     nullable: false
               - column:
                   name: card_type
-                  type: VARCHAR(255)
+                  type: BIGINT
               - column:
                   name: enabled
                   type: BOOLEAN
@@ -186,4 +186,173 @@ databaseChangeLog:
             referencedTableName: card
             referencedColumnNames: id
             constraintName: fk_debit_account_card
+            onDelete: CASCADE
+
+  - changeSet:
+      id: 8
+      author: assistant
+      changes:
+        - createTable:
+            tableName: service_point
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: enabled
+                  type: BOOLEAN
+                  defaultValueBoolean: true
+
+  - changeSet:
+      id: 9
+      author: assistant
+      changes:
+        - createTable:
+            tableName: payment
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: date_payment
+                  type: DATETIME
+                  constraints:
+                    nullable: false
+              - column:
+                  name: type_payment
+                  type: INT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: charge
+                  type: DECIMAL(19,2)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: card_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: fee
+                  type: DECIMAL(19,2)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: service_point_id
+                  type: BIGINT
+              - column:
+                  name: currency
+                  type: INT
+              - column:
+                  name: enabled
+                  type: BOOLEAN
+                  defaultValueBoolean: true
+
+  - changeSet:
+      id: 10
+      author: assistant
+      changes:
+        - createTable:
+            tableName: transaction
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: date_transaction
+                  type: DATETIME
+                  constraints:
+                    nullable: false
+              - column:
+                  name: type_transaction
+                  type: INT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: amount
+                  type: DECIMAL(19,2)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: debit_account_source_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: debit_account_destiny_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: currency
+                  type: INT
+              - column:
+                  name: enabled
+                  type: BOOLEAN
+                  defaultValueBoolean: true
+
+  - changeSet:
+      id: 11
+      author: assistant
+      changes:
+        - addForeignKeyConstraint:
+            baseTableName: payment
+            baseColumnNames: card_id
+            referencedTableName: card
+            referencedColumnNames: id
+            constraintName: fk_payment_card
+            onDelete: CASCADE
+
+  - changeSet:
+      id: 12
+      author: assistant
+      changes:
+        - addForeignKeyConstraint:
+            baseTableName: payment
+            baseColumnNames: service_point_id
+            referencedTableName: service_point
+            referencedColumnNames: id
+            constraintName: fk_payment_service_point
+            onDelete: SET_NULL
+
+  - changeSet:
+      id: 13
+      author: assistant
+      changes:
+        - addForeignKeyConstraint:
+            baseTableName: transaction
+            baseColumnNames: debit_account_source_id
+            referencedTableName: debit_account
+            referencedColumnNames: id
+            constraintName: fk_transaction_debit_source
+            onDelete: CASCADE
+
+  - changeSet:
+      id: 14
+      author: assistant
+      changes:
+        - addForeignKeyConstraint:
+            baseTableName: transaction
+            baseColumnNames: debit_account_destiny_id
+            referencedTableName: debit_account
+            referencedColumnNames: id
+            constraintName: fk_transaction_debit_destiny
             onDelete: CASCADE
