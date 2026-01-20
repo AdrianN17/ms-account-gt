@@ -180,7 +180,7 @@ public interface ServicePointsApi {
             tags = {},
             responses = {
                     @ApiResponse(responseCode = "200", description = "", content = {
-                            @Content(mediaType = "application/json", schema = @Schema(implementation = ObtainServicePoint200Response.class))
+                            @Content(mediaType = "application/json", schema = @Schema(implementation = ServicePointResponse.class))
                     }),
                     @ApiResponse(responseCode = "400", description = "", content = {
                             @Content(mediaType = "application/json", schema = @Schema(implementation = BadRequestResponse.class))
@@ -198,7 +198,7 @@ public interface ServicePointsApi {
             value = "/service-points/{servicePointId}",
             produces = {"application/json"}
     )
-    Mono<ObtainServicePoint200Response> obtainServicePoint(
+    Mono<ServicePointResponse> obtainServicePoint(
             @Parameter(name = "servicePointId", description = "", required = true, in = ParameterIn.PATH) @PathVariable("servicePointId") Long servicePointId,
             @Parameter(hidden = true) final ServerWebExchange exchange
     );

@@ -18,12 +18,7 @@ import com.bank.accounts.domain.converter.DocumentTypeConverter;
 @AllArgsConstructor
 @Builder
 @EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = true)
-public class Account extends EnabledEntity {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @EqualsAndHashCode.Include
-    private Long id;
+public class Account extends IdEnabledEntity {
 
     @Convert(converter = DocumentTypeConverter.class)
     @Column(name = "document_type", nullable = false)

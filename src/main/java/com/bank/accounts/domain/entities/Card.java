@@ -16,12 +16,7 @@ import com.bank.accounts.domain.converter.CardTypeConverter;
 @AllArgsConstructor
 @Builder
 @EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = true)
-public class Card extends EnabledEntity {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @EqualsAndHashCode.Include
-    private Long id;
+public class Card extends IdEnabledEntity {
 
     @Column(name = "number_card")
     private String numberCard;
@@ -32,8 +27,11 @@ public class Card extends EnabledEntity {
     @Column(name = "date")
     private LocalDate date;
 
+    @Column(name = "account_id", nullable = false)
+    private Long accountId;
+
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "account_id", nullable = false)
+    @JoinColumn(name = "account_id", insertable = false, updatable = false)
     private Account account;
 
     @Convert(converter = CardTypeConverter.class)
@@ -47,5 +45,4 @@ public class Card extends EnabledEntity {
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "id", referencedColumnName = "card_id", insertable = false, updatable = false)
     private DebitAccount debitAccount;
-
 }

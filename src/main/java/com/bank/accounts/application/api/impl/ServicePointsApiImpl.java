@@ -3,7 +3,6 @@ package com.bank.accounts.application.api.impl;
 import com.bank.accounts.application.api.ServicePointsApi;
 import com.bank.accounts.domain.delegate.ServicePointsDelegate;
 import com.bank.accounts.application.schemas.request.ServicePointRequest;
-import com.bank.accounts.application.schemas.response.ObtainServicePoint200Response;
 import com.bank.accounts.application.schemas.response.ServicePointResponse;
 import com.bank.accounts.application.schemas.response.TrackingResponse;
 import lombok.AllArgsConstructor;
@@ -32,7 +31,7 @@ public class ServicePointsApiImpl implements ServicePointsApi {
     }
 
     @Override
-    public Mono<ObtainServicePoint200Response> obtainServicePoint(Long servicePointId, ServerWebExchange exchange) {
+    public Mono<ServicePointResponse> obtainServicePoint(Long servicePointId, ServerWebExchange exchange) {
         return servicePointsDelegate.obtainServicePoint(servicePointId);
     }
 

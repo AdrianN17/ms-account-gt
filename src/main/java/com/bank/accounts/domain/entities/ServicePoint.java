@@ -2,9 +2,6 @@ package com.bank.accounts.domain.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,15 +18,12 @@ import lombok.Setter;
 @AllArgsConstructor
 @Builder
 @EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = true)
-public class ServicePoint extends EnabledEntity {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @EqualsAndHashCode.Include
-    private Long id;
+public class ServicePoint extends IdEnabledEntity {
 
     @Column(name = "name", nullable = false)
     private String name;
 
-}
+    @Column(name = "debit_account_id")
+    private Long debitAccountId;
 
+}

@@ -1,10 +1,9 @@
 package com.bank.accounts.domain.delegate.impl;
 
-import com.bank.accounts.domain.delegate.ServicePointsDelegate;
 import com.bank.accounts.application.schemas.request.ServicePointRequest;
-import com.bank.accounts.application.schemas.response.ObtainServicePoint200Response;
 import com.bank.accounts.application.schemas.response.ServicePointResponse;
 import com.bank.accounts.application.schemas.response.TrackingResponse;
+import com.bank.accounts.domain.delegate.ServicePointsDelegate;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -27,7 +26,7 @@ public class ServicePointsDelegateImpl implements ServicePointsDelegate {
     }
 
     @Override
-    public Mono<ObtainServicePoint200Response> obtainServicePoint(Long servicePointId) {
+    public Mono<ServicePointResponse> obtainServicePoint(Long servicePointId) {
         return null;
     }
 

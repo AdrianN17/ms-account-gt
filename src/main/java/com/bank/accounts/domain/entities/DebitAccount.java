@@ -8,6 +8,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 @Table(name = "debit_account")
@@ -17,12 +18,7 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @Builder
 @EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = true)
-public class DebitAccount extends EnabledEntity {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @EqualsAndHashCode.Include
-    private Long id;
+public class DebitAccount extends IdEnabledEntity {
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "card_id", nullable = false)
@@ -38,5 +34,9 @@ public class DebitAccount extends EnabledEntity {
     @Convert(converter = CurrencyConverter.class)
     @Column(name = "currency")
     private Currency currency;
+
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "debit_account_id")
+    private List<ServicePoint> servicePoints;
 
 }

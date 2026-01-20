@@ -14,12 +14,7 @@ import java.time.OffsetDateTime;
 @AllArgsConstructor
 @Builder
 @EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = true)
-public class Payment extends EnabledEntity {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @EqualsAndHashCode.Include
-    private Long id;
+public class Payment extends IdEnabledEntity {
 
     @Column(name = "date_payment", nullable = false)
     private OffsetDateTime datePayment;

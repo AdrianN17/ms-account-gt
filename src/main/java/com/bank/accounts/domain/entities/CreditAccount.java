@@ -17,12 +17,7 @@ import com.bank.accounts.domain.converter.CurrencyConverter;
 @AllArgsConstructor
 @Builder
 @EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = true)
-public class CreditAccount extends EnabledEntity {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @EqualsAndHashCode.Include
-    private Long id;
+public class CreditAccount extends IdEnabledEntity {
 
     @Column(name = "card_id")
     private Long cardId;

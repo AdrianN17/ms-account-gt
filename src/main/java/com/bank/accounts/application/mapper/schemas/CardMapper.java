@@ -7,7 +7,7 @@ import com.bank.accounts.domain.dto.response.CardResponseDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
-@Mapper(uses = {com.bank.accounts.application.mapper.schemas.CardCreditDebitAccountMapper.class})
+@Mapper(uses = {CardCreditDebitAccountMapper.class})
 public interface CardMapper {
     CardMapper INSTANCE = Mappers.getMapper(CardMapper.class);
 

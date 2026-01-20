@@ -10,7 +10,7 @@ import com.bank.accounts.domain.dto.request.CardRequestDto;
 import com.bank.accounts.domain.dto.response.CardResponseDto;
 import com.bank.accounts.domain.entities.Card;
 
-@Mapper(uses = {EntityMapperHelper.class})
+@Mapper(uses = {EntityMapperHelper.class}, builder = @org.mapstruct.Builder(disableBuilder = true))
 public interface CardEntityMapper {
     CardEntityMapper INSTANCE = Mappers.getMapper(CardEntityMapper.class);
 
@@ -24,7 +24,7 @@ public interface CardEntityMapper {
 
     @Mappings({
             @Mapping(source = "id", target = "cardId"),
-            @Mapping(source = "account.id", target = "accountId"),
+            @Mapping(source = "accountId", target = "accountId"),
             @Mapping(source = "date", target = "date"),
             @Mapping(source = "cardType", target = "cardType"),
             @Mapping(target = "creditDebitAccount", ignore = true)

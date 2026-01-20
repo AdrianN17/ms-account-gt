@@ -1,18 +1,22 @@
 package com.bank.accounts.domain.delegate.impl;
 
-import com.bank.accounts.domain.delegate.AccountsDelegate;
 import com.bank.accounts.application.schemas.request.AccountRequest;
 import com.bank.accounts.application.schemas.request.CreateAccountCardRequest;
 import com.bank.accounts.application.schemas.response.AccountResponse;
 import com.bank.accounts.application.schemas.response.TrackingResponse;
+import com.bank.accounts.domain.delegate.AccountsDelegate;
+import com.bank.accounts.domain.service.AccountService;
+import lombok.AllArgsConstructor;
 import reactor.core.publisher.Mono;
 
+@AllArgsConstructor
 public class AccountsDelegateImpl implements AccountsDelegate {
 
+    private final AccountService accountService;
 
     @Override
     public Mono<TrackingResponse> createAccount(Mono<AccountRequest> accountRequest) {
-        return null;
+        return accountService.createAccount(accountRequest);
     }
 
     @Override
@@ -22,7 +26,7 @@ public class AccountsDelegateImpl implements AccountsDelegate {
 
     @Override
     public Mono<TrackingResponse> deleteAccount(Long accountId) {
-        return null;
+        return accountService.deleteAccount(accountId);
     }
 
     @Override
@@ -37,11 +41,11 @@ public class AccountsDelegateImpl implements AccountsDelegate {
 
     @Override
     public Mono<AccountResponse> obtainAccount(Long accountId) {
-        return null;
+        return accountService.obtainAccount(accountId);
     }
 
     @Override
     public Mono<TrackingResponse> updateAccount(Long accountId, Mono<AccountRequest> accountRequest) {
-        return null;
+        return accountService.updateAccount(accountId, accountRequest);
     }
 }

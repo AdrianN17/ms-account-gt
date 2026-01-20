@@ -211,6 +211,11 @@ databaseChangeLog:
                   name: enabled
                   type: BOOLEAN
                   defaultValueBoolean: true
+              - column:
+                  name: debit_account_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
 
   - changeSet:
       id: 9
@@ -356,3 +361,15 @@ databaseChangeLog:
             referencedColumnNames: id
             constraintName: fk_transaction_debit_destiny
             onDelete: CASCADE
+
+  - changeSet:
+      id: 15
+      author: assistant
+      changes:
+        - addForeignKeyConstraint:
+            baseTableName: service_point
+            baseColumnNames: debit_account_id
+            referencedTableName: debit_account
+            referencedColumnNames: id
+            constraintName: fk_service_point_debit_account
+            onDelete: SET_NULL

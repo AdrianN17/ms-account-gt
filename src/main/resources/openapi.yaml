@@ -840,19 +840,87 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  servicePointId:
-                    type: integer
-                    format: int64
-                  name:
-                    type: string
-                  accountOwner:
-                    $ref: '#/components/schemas/AccountResponse'
-                required:
-                  - servicePointId
-                  - name
-                  - accountOwner
+                $ref: '#/components/schemas/ServicePointResponse'
+          headers: {}
+        '400':
+          $ref: '#/components/responses/BadRequest'
+          description: ''
+        '404':
+          $ref: '#/components/responses/NotFound'
+          description: ''
+        '500':
+          $ref: '#/components/responses/InternalError'
+          description: ''
+      security: []
+  /balance/transactions/{accountId}:
+    get:
+      summary: Obtener Total transacciones del mes
+      deprecated: false
+      description: ''
+      operationId: getTransactionsBalance
+      tags: []
+      parameters:
+        - name: accountId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: month
+          in: query
+          description: ''
+          required: true
+          schema:
+            type: string
+            pattern: ^\d{4}-(0[1-9]|1[0-2])$
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BalanceSchemaResponse'
+          headers: {}
+        '400':
+          $ref: '#/components/responses/BadRequest'
+          description: ''
+        '404':
+          $ref: '#/components/responses/NotFound'
+          description: ''
+        '500':
+          $ref: '#/components/responses/InternalError'
+          description: ''
+      security: []
+  /balance/payments/{accountId}:
+    get:
+      summary: Obtener Total pagos del mes
+      deprecated: false
+      description: ''
+      operationId: getPaymentsBalance
+      tags: []
+      parameters:
+        - name: accountId
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: month
+          in: query
+          description: ''
+          required: true
+          schema:
+            type: string
+            pattern: ^\d{4}-(0[1-9]|1[0-2])$
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BalanceSchemaResponse'
           headers: {}
         '400':
           $ref: '#/components/responses/BadRequest'
@@ -1246,6 +1314,17 @@ components:
       required:
         - description
     NotFoundResponse: *ref_0
+    BalanceSchemaResponse:
+      type: object
+      properties:
+        month:
+          type: string
+          pattern: ^\d{4}-(0[1-9]|1[0-2])$
+        amount:
+          type: string
+      required:
+        - month
+        - amount
   responses:
     Tracking:
       description: ''

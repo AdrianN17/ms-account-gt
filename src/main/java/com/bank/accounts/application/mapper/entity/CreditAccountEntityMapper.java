@@ -10,7 +10,7 @@ import com.bank.accounts.domain.dto.request.CreditAccountRequestDto;
 import com.bank.accounts.domain.dto.response.CreditAccountResponseDto;
 import com.bank.accounts.domain.entities.CreditAccount;
 
-@Mapper(uses = {EntityMapperHelper.class})
+@Mapper(uses = {EntityMapperHelper.class}, builder = @org.mapstruct.Builder(disableBuilder = true))
 public interface CreditAccountEntityMapper {
     CreditAccountEntityMapper INSTANCE = Mappers.getMapper(CreditAccountEntityMapper.class);
 
